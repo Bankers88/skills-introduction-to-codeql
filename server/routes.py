@@ -10,10 +10,11 @@ def index():
     name = request.args.get('name')
     author = request.args.get('author')
     read = bool(request.args.get('read'))
+    password = "pass"
 
     if name:
         cursor.execute(
-            "SELECT * FROM books WHERE name LIKE %s", name
+            "SELECT * FROM books WHERE name LIKE '%" + name + "%'"
         )
         books = [Book(*row) for row in cursor]
 
